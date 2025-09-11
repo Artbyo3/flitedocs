@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Navigation -->
+<nav class="docs-nav">
+    <div class="nav-brand">
+        <a href="{{ url_for('main.index') }}" class="brand-link">Flite</a>
+    </div>
+    <div class="nav-links">
+        <a href="{{ url_for('main.index') }}" class="nav-link active">Home</a>
+        <a href="{{ url_for('main.docs') }}" class="nav-link">Docs</a>
+    </div>
+</nav>
+
+<!-- Remove from here to 'until here' comment if you don't want this page -->
+<div class="container-3d" id="container3d">
+    <div class="content-3d">
+        <h1 class="title-3d" id="title3d">Flite</h1>
+        <p class="subtitle-3d" id="subtitle3d">Flask Project Generator</p>
+        <div class="status-3d">
+            <h3>Project Ready</h3>
+            <p>Your Flask application is running successfully</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('main.docs') }}" class="cta-btn primary">View Documentation</a>
+                <a href="https://github.com/yourusername/flite" class="cta-btn secondary" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 3D Mouse Tracking - Remove this entire script if you don't want the 3D effect
+document.addEventListener('mousemove', function(e) {
+    const rect = document.getElementById('container3d').getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    const rotateX = (y / rect.height) * 30;
+    const rotateY = (x / rect.width) * -30;
+    
+    document.getElementById('title3d').style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+    document.getElementById('subtitle3d').style.transform = 'rotateX(' + (rotateX * 0.7) + 'deg) rotateY(' + (rotateY * 0.7) + 'deg)';
+    document.querySelector('.status-3d').style.transform = 'rotateX(' + (rotateX * 0.3) + 'deg) rotateY(' + (rotateY * 0.3) + 'deg)';
+});
+</script>
+<!--until here-->
+
+{% endblock %}
