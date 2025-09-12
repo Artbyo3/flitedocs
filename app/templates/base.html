@@ -9,6 +9,67 @@
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 <body>
+   
+    <!-- START ALERT - Remove this entire div and comments to remove alert -->
+    <div style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(45deg, #ff4500, #ff6b35);
+        color: white;
+        padding: 2px 20px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+        z-index: 9999;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        border-bottom: 2px solid #ff8c00;
+    ">
+        ⚠️ WARNING: These docs are not yet updated and do not reflect the actual Flite documentation at the moment "sep. 11 2025".
+    </div>
+    <!-- END ALERT - Remove this entire div and comments to remove alert -->
+    
     {% block content %}{% endblock %}
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Flitedocs</h3>
+                    <p>Fast and efficient documentation for developers</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Links</h4>
+                        <ul>
+                            <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                            <li><a href="{{ url_for('main.docs') }}">Documentation</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">GitHub</a></li>
+
+                            <li><a href="#">Examples</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                          
+                         
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Flitedocs. Almost all rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
