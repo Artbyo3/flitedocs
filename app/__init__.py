@@ -15,6 +15,13 @@ def create_app(config_class=None):
     
     app.config.from_object(config_class)
     
+    # Configurar rutas de archivos estáticos y templates para Vercel
+    import os
+    if os.environ.get('VERCEL') == '1':
+        # En Vercel, el directorio de trabajo es la raíz del proyecto
+        app.static_folder = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'app', 'static')
+        app.template_folder = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'app', 'templates')
+    
     # Register blueprints
     from app.routes import main_bp
     app.register_blueprint(main_bp)
