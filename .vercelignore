@@ -24,6 +24,5 @@ coverage.xml
 
 # Development files
 run.py
-config.py
 *.md
 .gitignore
