@@ -4,6 +4,9 @@ import os
 # Crear la aplicación Flask
 app = create_app()
 
-# Configurar para Vercel
+# Exportar para Vercel (REQUERIDO)
+handler = app
+
+# Configurar para desarrollo local
 if __name__ == '__main__':
     app.run(debug=True)
