@@ -1,15 +1,20 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/index.py",
-      "use": "@vercel/python"
+  "buildCommand": "python -m pip install -r requirements.txt",
+  "outputDirectory": ".",
+  "functions": {
+    "run.py": {
+      "runtime": "python3.9"
     }
-  ],
+  },
   "routes": [
     {
+      "src": "/static/(.*)",
+      "dest": "/app/static/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "api/index.py"
+      "dest": "/run.py"
     }
   ]
 }
