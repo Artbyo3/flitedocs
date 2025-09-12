@@ -27,3 +27,5 @@ def create_app(config_class=None):
     app.register_blueprint(main_bp)
     
     return app
+
+app = create_app()
