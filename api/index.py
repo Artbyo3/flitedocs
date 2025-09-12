@@ -1,5 +1,10 @@
-from app import create_app
+import sys
 import os
+
+# Agregar la raíz del proyecto al path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from app import create_app
 
 # Crear la aplicación Flask
 app = create_app()
