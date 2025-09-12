@@ -6,6 +6,7 @@ Supports both local .env files and Vercel environment variables
 import os
 from dotenv import load_dotenv
 
+# Get the directory containing this file
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 # Load .env file only if it exists (for local development)
@@ -14,7 +15,7 @@ if os.path.exists(env_path):
     load_dotenv(env_path)
 
 class Config:
-    """Base configuration"""
+    """Base configuration class"""
     # Flask settings
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-in-production'
     
@@ -24,7 +25,7 @@ class Config:
     # Vercel specific settings
     VERCEL = os.environ.get('VERCEL') == '1'
     
-    # Static files configuration
+    # Static and template folders (Flask will use these automatically)
     STATIC_FOLDER = 'static'
     TEMPLATE_FOLDER = 'templates'
 
@@ -43,7 +44,6 @@ class TestingConfig(Config):
     TESTING = True
     DEBUG = True
 
-# Auto-detect environment
 def get_config():
     """Get configuration based on environment"""
     if os.environ.get('VERCEL') == '1':
@@ -55,6 +55,7 @@ def get_config():
     else:
         return DevelopmentConfig
 
+# Configuration dictionary for easy access
 config = {
     'development': DevelopmentConfig,
     'production': ProductionConfig,
