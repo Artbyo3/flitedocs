@@ -3,7 +3,7 @@ Flitedocs - Flask Application
 """
 
 from flask import Flask
-from config import get_config
+from app.config import get_config
 
 def create_app(config_class=None):
     """Application factory pattern"""
@@ -21,5 +21,3 @@ def create_app(config_class=None):
     
     return app
 
-# Create app instance for direct imports
-app = create_app()

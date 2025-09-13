@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 # Load .env file only if it exists (for local development)
-env_path = os.path.join(basedir, '.env')
+env_path = os.path.join(basedir, '..', '.env')
 if os.path.exists(env_path):
     load_dotenv(env_path)
 
