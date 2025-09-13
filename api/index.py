@@ -3,11 +3,13 @@ Vercel entry point for Flitedocs
 """
 
 from flask import Flask, render_template
+import os
 
-# Create a simple Flask app directly
+# Create Flask app with absolute paths
+basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__, 
-            template_folder='../app/templates',
-            static_folder='../app/static')
+            template_folder=os.path.join(basedir, '..', 'app', 'templates'),
+            static_folder=os.path.join(basedir, '..', 'app', 'static'))
 
 @app.route('/')
 def index():
