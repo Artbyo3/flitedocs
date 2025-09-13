@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Navigation -->
+<nav class="docs-nav">
+    <div class="nav-brand">
+        <a href="{{ url_for('main.index') }}" class="brand-link">Flite</a>
+    </div>
+    <div class="nav-links">
+        <a href="{{ url_for('main.index') }}" class="nav-link">Home</a>
+        <a href="{{ url_for('main.docs') }}" class="nav-link">Docs</a>
+    </div>
+</nav>
+
+<!-- 404 Error Container -->
+<div class="error-container" id="errorContainer">
+    <div class="error-content">
+        <h1 class="error-title" id="errorTitle">404</h1>
+        <p class="error-subtitle" id="errorSubtitle">Page Not Found</p>
+        <div class="error-status">
+            <h3>Oops! Something went wrong</h3>
+            <p>The page you're looking for doesn't exist or has been moved.</p>
+            <div class="error-buttons">
+                <a href="{{ url_for('main.index') }}" class="cta-btn primary">Go Home</a>
+                <a href="{{ url_for('main.docs') }}" class="cta-btn secondary">View Documentation</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 3D Mouse Tracking for 404 page
+document.addEventListener('mousemove', function(e) {
+    const rect = document.getElementById('errorContainer').getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    const rotateX = (y / rect.height) * 20;
+    const rotateY = (x / rect.width) * -20;
+    
+    document.getElementById('errorTitle').style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+    document.getElementById('errorSubtitle').style.transform = 'rotateX(' + (rotateX * 0.7) + 'deg) rotateY(' + (rotateY * 0.7) + 'deg)';
+    document.querySelector('.error-status').style.transform = 'rotateX(' + (rotateX * 0.3) + 'deg) rotateY(' + (rotateY * 0.3) + 'deg)';
+});
+</script>
+{% endblock %}

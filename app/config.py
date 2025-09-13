@@ -17,7 +17,7 @@ if os.path.exists(env_path):
 class Config:
     """Base configuration class"""
     # Flask settings
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-in-production'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'change-this-in-production'
     
     # Database settings (if needed in the future)
     DATABASE_URL = os.environ.get('DATABASE_URL')

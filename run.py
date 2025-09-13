@@ -6,7 +6,7 @@ from app import create_app
 
 app = create_app()
 
-# Exportar para Vercel
+# Export for Vercel
 handler = app.wsgi_app
 
 if __name__ == '__main__':

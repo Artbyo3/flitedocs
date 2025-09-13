@@ -12,7 +12,6 @@
     </div>
 </nav>
 
-<!-- Remove from here to 'until here' comment if you don't want this page -->
 <div class="container-3d" id="container3d">
     <div class="content-3d">
         <h1 class="title-3d" id="title3d">Flite</h1>
@@ -29,7 +28,7 @@
 </div>
 
 <script>
-// 3D Mouse Tracking - Remove this entire script if you don't want the 3D effect
+// 3D Mouse Tracking
 document.addEventListener('mousemove', function(e) {
     const rect = document.getElementById('container3d').getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -42,6 +41,5 @@ document.addEventListener('mousemove', function(e) {
     document.querySelector('.status-3d').style.transform = 'rotateX(' + (rotateX * 0.3) + 'deg) rotateY(' + (rotateY * 0.3) + 'deg)';
 });
 </script>
-<!--until here-->
 
 {% endblock %}
