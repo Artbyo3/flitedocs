@@ -19,7 +19,7 @@ try:
     print("✅ Successfully created Flask app")
     
     # Export the WSGI application for Vercel
-    handler = app
+    handler = app.wsgi_app
     print("✅ Successfully exported handler")
     
 except Exception as e:
