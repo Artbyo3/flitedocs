@@ -23,5 +23,6 @@ def docs():
 def not_found(error):
     return render_template('404.html'), 404
 
-# Export for Vercel
-handler = app
+# Export WSGI callable for Vercel
+# Vercel expects a WSGI callable; use app.wsgi_app to be explicit and match `run.py`.
+handler = app.wsgi_app
