@@ -1,238 +1,276 @@
 {% extends "base.html" %}
 
+{% block additional_css %}
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'flite-orange': '#ff6b35',
+          'flite-red': '#ff4500',
+          'flite-yellow': '#ffff00',
+          'flite-dark': '#ff8c00'
+        }
+      }
+    }
+  }
+</script>
+{% endblock %}
+
 {% block content %}
-<div class="docs-container">
-    <!-- Main Documentation Layout -->
-    <div class="docs-layout">
-        <!-- Left Sidebar - Full Height -->
-        <aside class="docs-sidebar" id="docsSidebar">
-            <div class="sidebar-header">
-                <a href="{{ url_for('index') }}" class="sidebar-brand">
-                    <span class="brand-icon">🔥</span>
-                    <span class="brand-text">FliteDocs</span>
-                </a>
-                <button class="sidebar-close" id="sidebarClose">✕</button>
-            </div>
+<div class="min-h-screen" style="background: radial-gradient(circle, #ff4500 0%, #ff6b35 25%, #ff8c00 50%, #ff1744 100%); background-attachment: fixed; background-size: cover; background-position: center;">
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <a href="{{ url_for('index') }}" class="brand-link">
+          <span class="brand-text">Flite</span>
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+        <a href="{{ url_for('docs') }}" class="nav-link active">Docs</a>
+      </div>
+    </div>
+  </nav>
 
-            <!-- Search Bar in Sidebar -->
-            <div class="sidebar-search">
-                <div class="search-container">
-                    <button class="search-btn">🔍</button>
-                    <input type="text" class="search-input" placeholder="Search documentation..." id="searchInput">
-                </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Sidebar -->
+      <aside class="lg:w-64 flex-shrink-0">
+        <div class="sticky top-8">
+          <!-- Search -->
+          <div class="mb-6">
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-flite-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </div>
+              <input type="text" class="block w-full pl-10 pr-3 py-2 border border-flite-orange/30 rounded-md leading-5 bg-black/60 backdrop-blur-lg placeholder-flite-orange/70 text-white focus:outline-none focus:placeholder-flite-yellow/70 focus:ring-1 focus:ring-flite-orange focus:border-flite-orange" placeholder="Search docs...">
             </div>
+          </div>
 
-                    <!-- Version Display in Sidebar -->
-                    <div class="sidebar-version">
-                        <a href="#" class="version-link">
-                            <span class="version-icon">📋</span>
-                            <span class="version-text">v1.0.0</span>
-                        </a>
+          <!-- Navigation -->
+          <nav class="space-y-1">
+            <div class="text-xs font-semibold text-flite-yellow/80 uppercase tracking-wider mb-3">Getting Started</div>
+            <a href="#installation" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-flite-yellow hover:bg-black/40 transition-colors">
+              Installation
+            </a>
+            <a href="#quickstart" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-flite-yellow hover:bg-black/40 transition-colors">
+              Quick Start
+            </a>
+            <a href="#project-structure" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-flite-yellow hover:bg-black/40 transition-colors">
+              Project Structure
+            </a>
+            
+            <div class="text-xs font-semibold text-flite-yellow/80 uppercase tracking-wider mb-3 mt-6">Reference</div>
+            <a href="#commands" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-flite-yellow hover:bg-black/40 transition-colors">
+              Commands
+            </a>
+            <a href="#templates" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-flite-yellow hover:bg-black/40 transition-colors">
+              Templates
+            </a>
+            <a href="#configuration" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-flite-yellow hover:bg-black/40 transition-colors">
+              Configuration
+            </a>
+            
+            <div class="text-xs font-semibold text-flite-yellow/80 uppercase tracking-wider mb-3 mt-6">Help</div>
+            <a href="#troubleshooting" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-flite-yellow hover:bg-black/40 transition-colors">
+              Troubleshooting
+            </a>
+            <a href="#faq" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-flite-yellow hover:bg-black/40 transition-colors">
+              FAQ
+            </a>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 min-w-0">
+        <!-- Hero Section -->
+        <div class="mb-12">
+          <h1 class="text-4xl font-bold text-white mb-4" style="background: linear-gradient(45deg, #ff4500, #ff6b35, #ffff00, #ff8c00, #ff4500); background-size: 300% 300%; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: fire-gradient 3s infinite;">Flite Documentation</h1>
+          <p class="text-xl text-flite-yellow mb-6">A Python CLI tool for generating Flask applications with modern best practices.</p>
+          <div class="flex flex-wrap gap-4">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-black/60 backdrop-blur-lg text-flite-yellow border border-flite-orange/30">
+              v2.0
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-black/60 backdrop-blur-lg text-white border border-flite-orange/30">
+              Python 3.8+
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-black/60 backdrop-blur-lg text-white border border-flite-orange/30">
+              Flask
+            </span>
+          </div>
         </div>
 
-            <nav class="sidebar-nav">
-                <!-- Main Topics Only -->
-                <ul class="main-nav-list">
-                    <li><a href="#getting-started" class="main-nav-item active">Getting Started</a></li>
-                    <li><a href="#guides" class="main-nav-item">Guides</a></li>
-                    <li><a href="#api-reference" class="main-nav-item">API Reference</a></li>
-                    <li><a href="#faq" class="main-nav-item">FAQ</a></li>
-                </ul>
-            </nav>
-
-  
-        </aside>
-
-        <!-- Main Content Area -->
-        <main class="docs-main">
-            <!-- Compact Top Navigation -->
-            <nav class="docs-top-nav">
-                <div class="nav-container">
-        <div class="nav-links">
-            <a href="{{ url_for('index') }}" class="nav-link">Home</a>
-            <a href="{{ url_for('docs') }}" class="nav-link active">Docs</a>
-        </div>
-                    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+        <!-- Installation Section -->
+        <section id="installation" class="mb-12">
+          <div class="bg-black/90 backdrop-blur-lg rounded-lg shadow-lg border border-flite-orange/30 p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-10 h-10 bg-gradient-to-r from-flite-red to-flite-orange rounded-lg flex items-center justify-center mr-4">
+                <span class="text-white font-bold">🚀</span>
+              </div>
+              <h2 class="text-2xl font-bold text-flite-yellow">Installation</h2>
+            </div>
+            
+            <p class="text-gray-300 mb-6">Flite is a Python CLI tool for generating Flask projects. Since it's currently in development, you'll need to install it from source.</p>
+            
+            <div class="bg-gray-900 rounded-lg p-6 mb-6">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                  <span class="text-gray-400 text-sm ml-2">Terminal</span>
                 </div>
-            </nav>
-
-            <!-- Breadcrumbs -->
-            <nav class="breadcrumb">
-                <a href="{{ url_for('index') }}">Home</a>
-                <span class="breadcrumb-separator">›</span>
-                <a href="{{ url_for('docs') }}">Docs</a>
-                <span class="breadcrumb-separator">›</span>
-                <span class="breadcrumb-current">Getting Started</span>
-    </nav>
-
-            <!-- Page Header -->
-            <header class="page-header">
-                <h1 class="page-title">FliteDocs Documentation</h1>
-                <p class="page-subtitle">Complete guide to building Flask applications with Flite - A Python CLI project generator</p>
-                <div class="page-meta">
-                    <span class="version-badge">v2.0</span>
-                    <span class="last-updated">Last updated: January 2025</span>
-                </div>
-            </header>
-
-            <!-- Content Sections -->
-            <div class="content-sections">
-                <!-- Getting Started Section -->
-                <section class="docs-section" id="installation">
-                    <div class="section-header">
-                        <h2>🚀 Installation</h2>
-                        <div class="section-meta">
-                            <span class="difficulty">Beginner</span>
-                            <span class="time-estimate">3 min read</span>
-                        </div>
-                    </div>
-                    <div class="section-content">
-                        <p>Flite is a Python CLI tool for generating Flask projects. Since it's currently in development, you'll need to install it from source.</p>
-                        
-                        <div class="installation-methods">
-                            <div class="method-tabs">
-                                <button class="tab-btn active" onclick="showTab('source')">From Source</button>
-                                <button class="tab-btn" onclick="showTab('pip')">Pip (Coming Soon)</button>
-                            </div>
-
-                            <div class="tab-content active" id="source">
-                                <h3>Install from Source</h3>
-                                <p>Clone the repository and install Flite in development mode:</p>
-                                
-                                <div class="code-block">
-                                    <div class="code-header">
-                                        <span class="code-title">Terminal</span>
-                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                    </div>
-                                    <pre><code class="language-bash"># Clone the repository
+                <button class="text-gray-400 hover:text-white transition-colors" onclick="copyCode(this)">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                  </svg>
+                </button>
+              </div>
+              <pre class="text-green-400 text-sm"><code># Clone the repository
 git clone https://github.com/Artbyo3/flite.git
 cd flite
 
 # Install in development mode
 pip install -e .</code></pre>
-                                </div>
+            </div>
 
-                                <div class="method-note">
-                                    <strong>Note:</strong> Make sure you have Python 3.8+ installed and pip available.
-                                </div>
+            <div class="bg-flite-orange/10 border border-flite-orange/30 rounded-lg p-4 mb-6 backdrop-blur-lg">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-flite-orange" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-flite-yellow">Note</h3>
+                  <div class="mt-2 text-sm text-gray-300">
+                    <p>Make sure you have Python 3.8+ installed and pip available.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                                <h4>Verify Installation</h4>
-                                <p>Check if Flite is installed correctly:</p>
-                                <div class="code-block small">
-                                    <div class="code-header">
-                                        <span class="code-title">Terminal</span>
-                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                    </div>
-                                    <pre><code class="language-bash">flite --version</code></pre>
-                                </div>
-                            </div>
+            <h3 class="text-lg font-semibold text-flite-yellow mb-4">Verify Installation</h3>
+            <p class="text-gray-300 mb-4">Check if Flite is installed correctly:</p>
+            
+            <div class="bg-gray-900 rounded-lg p-6">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                  <span class="text-gray-400 text-sm ml-2">Terminal</span>
+                </div>
+                <button class="text-gray-400 hover:text-white transition-colors" onclick="copyCode(this)">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                  </svg>
+                </button>
+              </div>
+              <pre class="text-green-400 text-sm"><code>flite --version</code></pre>
+            </div>
+          </div>
+        </section>
 
-                            <div class="tab-content" id="pip">
-                                <h3>Install with Pip (Coming Soon)</h3>
-                                <div class="coming-soon-box">
-                                    <span class="coming-soon-icon">🚀</span>
-                                    <div class="coming-soon-content">
-                                        <h4>Pip Installation Coming Soon!</h4>
-                                        <p>We're working on making Flite available through pip. For now, please use the source installation method above.</p>
-                                    </div>
-                                </div>
-                                
-                                <p>Once available, you'll be able to install Flite with:</p>
-                                <div class="code-block">
-                                    <div class="code-header">
-                                        <span class="code-title">Terminal</span>
-                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                    </div>
-                                    <pre><code class="language-bash">pip install flite</code></pre>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Quick Start Section -->
+        <section id="quickstart" class="mb-12">
+          <div class="bg-black/90 backdrop-blur-lg rounded-lg shadow-lg border border-flite-orange/30 p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-10 h-10 bg-gradient-to-r from-flite-orange to-flite-yellow rounded-lg flex items-center justify-center mr-4">
+                <span class="text-white font-bold">⚡</span>
+              </div>
+              <h2 class="text-2xl font-bold text-flite-yellow">Quick Start</h2>
+            </div>
+            
+            <p class="text-gray-300 mb-8">Create your first Flask project in under 2 minutes.</p>
+            
+            <div class="space-y-6">
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0">
+                  <div class="w-8 h-8 bg-flite-orange text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-lg font-semibold text-flite-yellow mb-2">Initialize Project</h3>
+                  <p class="text-gray-300 mb-3">Create a new Flask project with Flite's default template.</p>
+                  <div class="bg-gray-900 rounded-lg p-4">
+                    <pre class="text-green-400 text-sm"><code>flite init my-project</code></pre>
+                  </div>
+                </div>
+              </div>
 
-                        <div class="prerequisites-box">
-                            <h4>Prerequisites</h4>
-                            <ul>
-                                <li><strong>Python 3.8+</strong> - Flite requires Python 3.8 or higher</li>
-                                <li><strong>Git</strong> - For cloning the repository</li>
-                                <li><strong>pip</strong> - Python package installer</li>
-                                <li><strong>Virtual Environment</strong> (recommended) - For isolated installations</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0">
+                  <div class="w-8 h-8 bg-flite-orange text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-lg font-semibold text-flite-yellow mb-2">Navigate to Project</h3>
+                  <p class="text-gray-300 mb-3">Move into your project directory and explore the structure.</p>
+                  <div class="bg-gray-900 rounded-lg p-4">
+                    <pre class="text-green-400 text-sm"><code>cd my-project</code></pre>
+                  </div>
+                </div>
+              </div>
 
-                <section class="docs-section" id="quickstart">
-                    <div class="section-header">
-                        <h2>⚡ Quickstart</h2>
-                        <div class="section-meta">
-                            <span class="difficulty">Beginner</span>
-                            <span class="time-estimate">10 min read</span>
-                        </div>
-                    </div>
-                    <div class="section-content">
-                        <p>Create your first Flask project in under 2 minutes.</p>
-                        
-                        <div class="steps-container">
-                            <div class="step">
-                                <div class="step-number">1</div>
-                                <div class="step-content">
-                                    <h3>Initialize Project</h3>
-                                    <p>Create a new Flask project with Flite's default template.</p>
-                                    <div class="code-block small">
-                                        <pre><code>flite init my-project</code></pre>
-                                    </div>
-                                </div>
-                            </div>
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0">
+                  <div class="w-8 h-8 bg-flite-orange text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-lg font-semibold text-flite-yellow mb-2">Run Development Server</h3>
+                  <p class="text-gray-300 mb-3">Start the development server and see your app in action.</p>
+                  <div class="bg-gray-900 rounded-lg p-4">
+                    <pre class="text-green-400 text-sm"><code>flite run</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                            <div class="step">
-                                <div class="step-number">2</div>
-                                <div class="step-content">
-                                    <h3>Navigate to Project</h3>
-                                    <p>Move into your project directory and explore the structure.</p>
-                                    <div class="code-block small">
-                                        <pre><code>cd my-project</code></pre>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="mt-8 bg-green-500/10 border border-green-500/30 rounded-lg p-6 backdrop-blur-lg">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-green-400">Success!</h3>
+                  <div class="mt-2 text-sm text-gray-300">
+                    <p>Your Flask application is now running at <code class="bg-green-500/20 text-green-400 px-1 py-0.5 rounded text-xs">http://localhost:5000</code>. Open your browser and start building!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                            <div class="step">
-                                <div class="step-number">3</div>
-                                <div class="step-content">
-                                    <h3>Run Development Server</h3>
-                                    <p>Start the development server and see your app in action.</p>
-                                    <div class="code-block small">
-                                        <pre><code>flite run</code></pre>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="success-box">
-                            <div class="success-icon">✅</div>
-                            <div class="success-content">
-                                <h3>Success!</h3>
-                                <p>Your Flask application is now running at <code>http://localhost:5000</code>. Open your browser and start building!</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="docs-section" id="project-structure">
-                    <div class="section-header">
-                        <h2>📁 Project Structure</h2>
-                        <div class="section-meta">
-                            <span class="difficulty">Intermediate</span>
-                            <span class="time-estimate">8 min read</span>
-                        </div>
-                    </div>
-                    <div class="section-content">
-                        <p>Understanding the default project structure created by Flite.</p>
-                        
-                        <div class="structure-diagram">
-                            <div class="code-block">
-                                <div class="code-header">
-                                    <span class="code-title">Default Project Structure</span>
-                                </div>
-                                <pre><code>my-project/
+        <!-- Project Structure Section -->
+        <section id="project-structure" class="mb-12">
+          <div class="bg-black/90 backdrop-blur-lg rounded-lg shadow-lg border border-flite-orange/30 p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-10 h-10 bg-gradient-to-r from-flite-yellow to-flite-orange rounded-lg flex items-center justify-center mr-4">
+                <span class="text-white font-bold">📁</span>
+              </div>
+              <h2 class="text-2xl font-bold text-flite-yellow">Project Structure</h2>
+            </div>
+            
+            <p class="text-gray-300 mb-6">Understanding the default project structure created by Flite.</p>
+            
+            <div class="bg-gray-900 rounded-lg p-6 mb-6">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                  <span class="text-gray-400 text-sm ml-2">Project Structure</span>
+                </div>
+              </div>
+              <pre class="text-gray-300 text-sm"><code>my-project/
 ├── app/
 │   ├── __init__.py
 │   ├── models/
@@ -244,319 +282,354 @@ pip install -e .</code></pre>
 ├── config.py
 ├── run.py
 └── README.md</code></pre>
-                            </div>
-                        </div>
-
-                        <div class="structure-explanation">
-                            <h3>📋 Structure Overview</h3>
-                            <div class="explanation-grid">
-                                <div class="explanation-item">
-                                    <h3>app/</h3>
-                                    <p>Main application package containing all your Flask code</p>
-                                </div>
-                                <div class="explanation-item">
-                                    <h3>models/</h3>
-                                    <p>Database models and data structures</p>
-                                </div>
-                                <div class="explanation-item">
-                                    <h3>views/</h3>
-                                    <p>Route handlers and business logic</p>
-                                </div>
-                                <div class="explanation-item">
-                                    <h3>templates/</h3>
-                                    <p>Jinja2 HTML templates</p>
-                                </div>
-                                <div class="explanation-item">
-                                    <h3>static/</h3>
-                                    <p>CSS, JavaScript, and image assets</p>
-                                </div>
-                                <div class="explanation-item">
-                                    <h3>tests/</h3>
-                                    <p>Unit and integration tests</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="docs-section" id="cli-commands">
-                    <div class="section-header">
-                        <h2>⚡ CLI Commands</h2>
-                        <div class="section-meta">
-                            <span class="difficulty">Intermediate</span>
-                            <span class="time-estimate">15 min read</span>
-                        </div>
-                    </div>
-                    <div class="section-content">
-                        <p>Complete reference of all available Flite CLI commands.</p>
-                        
-                        <div class="commands-grid">
-                            <div class="command-card">
-                                <div class="command-header">
-                                    <h3>init</h3>
-                                    <span class="command-badge">Core</span>
-                                </div>
-                                <div class="command-description">
-                                    <p>Initialize a new Flask project with the specified template.</p>
-                                </div>
-                                <div class="command-usage">
-                                    <div class="code-block small">
-                                        <pre><code>flite init &lt;project-name&gt; [options]</code></pre>
-                                    </div>
-                                </div>
-                                <div class="command-options">
-                                    <h4>Options:</h4>
-                                    <ul>
-                                        <li><code>--template</code> Specify template to use</li>
-                                        <li><code>--database</code> Database type (sqlite, postgresql, mysql)</li>
-                                        <li><code>--auth</code> Include authentication system</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="command-card">
-                                <div class="command-header">
-                                    <h3>run</h3>
-                                    <span class="command-badge">Development</span>
-                                </div>
-                                <div class="command-description">
-                                    <p>Start the Flask development server with hot reload.</p>
-                                </div>
-                                <div class="command-usage">
-                                    <div class="code-block small">
-                                        <pre><code>flite run [options]</code></pre>
-                                    </div>
-                                </div>
-                                <div class="command-options">
-                                    <h4>Options:</h4>
-                                    <ul>
-                                        <li><code>--host</code> Host to bind to (default: 127.0.0.1)</li>
-                                        <li><code>--port</code> Port to bind to (default: 5000)</li>
-                                        <li><code>--debug</code> Enable debug mode</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="command-card">
-                                <div class="command-header">
-                                    <h3>build</h3>
-                                    <span class="command-badge">Production</span>
-                                </div>
-                                <div class="command-description">
-                                    <p>Build the application for production deployment.</p>
-                                </div>
-                                <div class="command-usage">
-                                    <div class="code-block small">
-                                        <pre><code>flite build [options]</code></pre>
-                                    </div>
-                                </div>
-                                <div class="command-options">
-                                    <h4>Options:</h4>
-                                    <ul>
-                                        <li><code>--optimize</code> Optimize assets and code</li>
-                                        <li><code>--minify</code> Minify CSS and JavaScript</li>
-                                        <li><code>--output</code> Output directory</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="docs-section" id="common-issues">
-                    <div class="section-header">
-                        <h2>❓ Common Issues</h2>
-                        <div class="section-meta">
-                            <span class="difficulty">All Levels</span>
-                            <span class="time-estimate">12 min read</span>
-                        </div>
-                    </div>
-                    <div class="section-content">
-                        <p>Solutions to frequently encountered problems.</p>
-                        
-                        <div class="issues-list">
-                            <div class="issue-item">
-                                <div class="issue-header">
-                                    <h3>ModuleNotFoundError: No module named 'flite'</h3>
-                                    <span class="issue-severity high">High</span>
-                                </div>
-                                <div class="issue-description">
-                                    <p><strong>Problem:</strong> Flite is not installed or not in your Python path.</p>
-                                    <p><strong>Solution:</strong> Reinstall Flite using pip or check your Python environment.</p>
-                                </div>
-                                <div class="issue-solution">
-                                    <div class="code-block small">
-                                        <pre><code>pip install --upgrade flite</code></pre>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="issue-item">
-                                <div class="issue-header">
-                                    <h3>Port 5000 already in use</h3>
-                                    <span class="issue-severity medium">Medium</span>
-                                </div>
-                                <div class="issue-description">
-                                    <p><strong>Problem:</strong> Another process is using port 5000.</p>
-                                    <p><strong>Solution:</strong> Use a different port or stop the conflicting process.</p>
-                                </div>
-                                <div class="issue-solution">
-                                    <div class="code-block small">
-                                        <pre><code>flite run --port 8000</code></pre>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </div>
 
-
-        </main>
-
-        <!-- Right Sidebar - Table of Contents -->
-        <aside class="page-nav">
-            <div class="page-nav-header">
-                <h4>On This Page</h4>
-            </div>
-            <div class="page-nav-content">
-                <div class="current-section">
-                    <h5 class="section-title">Getting Started</h5>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <div class="w-6 h-6 bg-flite-orange/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <span class="text-flite-orange text-sm">📦</span>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-flite-yellow">app/</h3>
+                    <p class="text-sm text-gray-300">Main application package containing all your Flask code</p>
+                  </div>
                 </div>
-                
-                <div class="section-topics">
-                    <ul class="topic-list">
-                        <li><a href="#installation" class="topic-link">Installation</a></li>
-                        <li><a href="#quickstart" class="topic-link">Quickstart</a></li>
-                        <li><a href="#first-project" class="topic-link">Your First Project</a></li>
-                        <li><a href="#configuration" class="topic-link">Configuration</a></li>
-                    </ul>
+                <div class="flex items-start space-x-3">
+                  <div class="w-6 h-6 bg-flite-orange/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <span class="text-flite-orange text-sm">🗃️</span>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-flite-yellow">models/</h3>
+                    <p class="text-sm text-gray-300">Database models and data structures</p>
+                  </div>
                 </div>
+                <div class="flex items-start space-x-3">
+                  <div class="w-6 h-6 bg-flite-orange/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <span class="text-flite-orange text-sm">🎯</span>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-flite-yellow">views/</h3>
+                    <p class="text-sm text-gray-300">Route handlers and business logic</p>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <div class="w-6 h-6 bg-flite-orange/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <span class="text-flite-orange text-sm">🎨</span>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-flite-yellow">templates/</h3>
+                    <p class="text-sm text-gray-300">Jinja2 HTML templates</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="w-6 h-6 bg-flite-orange/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <span class="text-flite-orange text-sm">📄</span>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-flite-yellow">static/</h3>
+                    <p class="text-sm text-gray-300">CSS, JavaScript, and image assets</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="w-6 h-6 bg-flite-orange/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <span class="text-flite-orange text-sm">🧪</span>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-flite-yellow">tests/</h3>
+                    <p class="text-sm text-gray-300">Unit and integration tests</p>
+                  </div>
+                </div>
+              </div>
             </div>
-        </aside>
+          </div>
+        </section>
+
+        <!-- Commands Section -->
+        <section id="commands" class="mb-12">
+          <div class="bg-black/90 backdrop-blur-lg rounded-lg shadow-lg border border-flite-orange/30 p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-10 h-10 bg-gradient-to-r from-flite-red to-flite-orange rounded-lg flex items-center justify-center mr-4">
+                <span class="text-white font-bold">⚡</span>
+              </div>
+              <h2 class="text-2xl font-bold text-flite-yellow">Commands</h2>
+            </div>
+            
+            <p class="text-gray-300 mb-8">Complete reference of all available Flite CLI commands.</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div class="border border-flite-orange/30 rounded-lg p-6 hover:shadow-lg transition-shadow bg-black/40 backdrop-blur-lg">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-lg font-semibold text-flite-yellow">flite init</h3>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-flite-orange/20 text-flite-orange border border-flite-orange/30">Core</span>
+                </div>
+                <p class="text-gray-300 mb-4">Initialize a new Flask project with the specified template.</p>
+                <div class="bg-gray-900 rounded-lg p-4 mb-4">
+                  <pre class="text-green-400 text-sm"><code>flite init &lt;project-name&gt; [options]</code></pre>
+                </div>
+                <div>
+                  <h4 class="font-medium text-flite-yellow mb-2">Options:</h4>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li><code class="bg-flite-orange/20 text-flite-orange px-1 py-0.5 rounded text-xs">--template</code> Specify template to use</li>
+                    <li><code class="bg-flite-orange/20 text-flite-orange px-1 py-0.5 rounded text-xs">--database</code> Database type (sqlite, postgresql, mysql)</li>
+                    <li><code class="bg-flite-orange/20 text-flite-orange px-1 py-0.5 rounded text-xs">--auth</code> Include authentication system</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="border border-flite-orange/30 rounded-lg p-6 hover:shadow-lg transition-shadow bg-black/40 backdrop-blur-lg">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-lg font-semibold text-flite-yellow">flite run</h3>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/30">Development</span>
+                </div>
+                <p class="text-gray-300 mb-4">Start the Flask development server with hot reload.</p>
+                <div class="bg-gray-900 rounded-lg p-4 mb-4">
+                  <pre class="text-green-400 text-sm"><code>flite run [options]</code></pre>
+                </div>
+                <div>
+                  <h4 class="font-medium text-flite-yellow mb-2">Options:</h4>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li><code class="bg-flite-orange/20 text-flite-orange px-1 py-0.5 rounded text-xs">--host</code> Host to bind to (default: 127.0.0.1)</li>
+                    <li><code class="bg-flite-orange/20 text-flite-orange px-1 py-0.5 rounded text-xs">--port</code> Port to bind to (default: 5000)</li>
+                    <li><code class="bg-flite-orange/20 text-flite-orange px-1 py-0.5 rounded text-xs">--debug</code> Enable debug mode</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="border border-flite-orange/30 rounded-lg p-6 hover:shadow-lg transition-shadow bg-black/40 backdrop-blur-lg">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-lg font-semibold text-flite-yellow">flite generate</h3>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-500/20 text-green-400 border border-green-500/30">Utility</span>
+                </div>
+                <p class="text-gray-300 mb-4">Generate additional components for your existing project.</p>
+                <div class="bg-gray-900 rounded-lg p-4 mb-4">
+                  <pre class="text-green-400 text-sm"><code>flite generate [component] [--name NAME]</code></pre>
+                </div>
+                <div>
+                  <h4 class="font-medium text-flite-yellow mb-2">Components:</h4>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li><code class="bg-flite-orange/20 text-flite-orange px-1 py-0.5 rounded text-xs">model</code> Create a new database model</li>
+                    <li><code class="bg-flite-orange/20 text-flite-orange px-1 py-0.5 rounded text-xs">view</code> Generate a new view/route</li>
+                    <li><code class="bg-flite-orange/20 text-flite-orange px-1 py-0.5 rounded text-xs">template</code> Create a new HTML template</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="border border-flite-orange/30 rounded-lg p-6 hover:shadow-lg transition-shadow bg-black/40 backdrop-blur-lg">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-lg font-semibold text-flite-yellow">flite build</h3>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-500/20 text-purple-400 border border-purple-500/30">Production</span>
+                </div>
+                <p class="text-gray-300 mb-4">Build the application for production deployment.</p>
+                <div class="bg-gray-900 rounded-lg p-4 mb-4">
+                  <pre class="text-green-400 text-sm"><code>flite build [options]</code></pre>
+                </div>
+                <div>
+                  <h4 class="font-medium text-flite-yellow mb-2">Options:</h4>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li><code class="bg-flite-orange/20 text-flite-orange px-1 py-0.5 rounded text-xs">--optimize</code> Optimize assets and code</li>
+                    <li><code class="bg-flite-orange/20 text-flite-orange px-1 py-0.5 rounded text-xs">--minify</code> Minify CSS and JavaScript</li>
+                    <li><code class="bg-flite-orange/20 text-flite-orange px-1 py-0.5 rounded text-xs">--output</code> Output directory</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Templates Section -->
+        <section id="templates" class="mb-12">
+          <div class="bg-black/90 backdrop-blur-lg rounded-lg shadow-lg border border-flite-orange/30 p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-10 h-10 bg-gradient-to-r from-flite-orange to-flite-yellow rounded-lg flex items-center justify-center mr-4">
+                <span class="text-white font-bold">📋</span>
+              </div>
+              <h2 class="text-2xl font-bold text-flite-yellow">Templates</h2>
+            </div>
+            
+            <p class="text-gray-300 mb-8">Choose from our pre-built templates to get started quickly with different types of Flask applications.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="border border-flite-orange/30 rounded-lg p-6 text-center hover:shadow-lg transition-shadow bg-black/40 backdrop-blur-lg">
+                <div class="w-16 h-16 bg-gradient-to-r from-flite-orange to-flite-yellow rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <span class="text-white text-2xl">🌐</span>
+                </div>
+                <h3 class="text-lg font-semibold text-flite-yellow mb-2">Web Application</h3>
+                <p class="text-gray-300">Complete web application with frontend templates, static files, and responsive design.</p>
+              </div>
+
+              <div class="border border-flite-orange/30 rounded-lg p-6 text-center hover:shadow-lg transition-shadow bg-black/40 backdrop-blur-lg">
+                <div class="w-16 h-16 bg-gradient-to-r from-flite-red to-flite-orange rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <span class="text-white text-2xl">🔌</span>
+                </div>
+                <h3 class="text-lg font-semibold text-flite-yellow mb-2">API Only</h3>
+                <p class="text-gray-300">RESTful API with authentication, serialization, and comprehensive error handling.</p>
+              </div>
+
+              <div class="border border-flite-orange/30 rounded-lg p-6 text-center hover:shadow-lg transition-shadow bg-black/40 backdrop-blur-lg">
+                <div class="w-16 h-16 bg-gradient-to-r from-flite-yellow to-flite-red rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <span class="text-white text-2xl">⚡</span>
+                </div>
+                <h3 class="text-lg font-semibold text-flite-yellow mb-2">Full Stack</h3>
+                <p class="text-gray-300">Complete full-stack application with frontend, backend, and database integration.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Configuration Section -->
+        <section id="configuration" class="mb-12">
+          <div class="bg-black/90 backdrop-blur-lg rounded-lg shadow-lg border border-flite-orange/30 p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-10 h-10 bg-gradient-to-r from-flite-dark to-flite-orange rounded-lg flex items-center justify-center mr-4">
+                <span class="text-white font-bold">⚙️</span>
+              </div>
+              <h2 class="text-2xl font-bold text-flite-yellow">Configuration</h2>
+            </div>
+            
+            <p class="text-gray-300 mb-6">Customize your Flask application with flexible configuration options.</p>
+            
+            <h3 class="text-lg font-semibold text-flite-yellow mb-4">Configuration File</h3>
+            <p class="text-gray-300 mb-4">Flite generates a comprehensive configuration file for your project:</p>
+            
+            <div class="bg-gray-900 rounded-lg p-6">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                  <span class="text-gray-400 text-sm ml-2">config.py</span>
+                </div>
+              </div>
+              <pre class="text-gray-300 text-sm"><code>import os
+
+class Config:
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///app.db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    
+class DevelopmentConfig(Config):
+    DEBUG = True
+    
+class ProductionConfig(Config):
+    DEBUG = False</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Troubleshooting Section -->
+        <section id="troubleshooting" class="mb-12">
+          <div class="bg-black/90 backdrop-blur-lg rounded-lg shadow-lg border border-flite-orange/30 p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-10 h-10 bg-gradient-to-r from-flite-red to-flite-dark rounded-lg flex items-center justify-center mr-4">
+                <span class="text-white font-bold">🔧</span>
+              </div>
+              <h2 class="text-2xl font-bold text-flite-yellow">Troubleshooting</h2>
+            </div>
+            
+            <p class="text-gray-300 mb-8">Common issues and their solutions to help you get unstuck.</p>
+            
+            <div class="space-y-6">
+              <div class="border border-red-500/30 rounded-lg p-6 bg-red-500/10 backdrop-blur-lg">
+                <div class="flex items-start">
+                  <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-medium text-red-400">ImportError: No module named 'flite'</h3>
+                    <div class="mt-2 text-sm text-gray-300">
+                      <p><strong>Solution:</strong> Make sure Flite is installed in your current Python environment. Try running <code class="bg-red-500/20 text-red-400 px-1 py-0.5 rounded text-xs">pip install flite</code> or check your virtual environment activation.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border border-yellow-500/30 rounded-lg p-6 bg-yellow-500/10 backdrop-blur-lg">
+                <div class="flex items-start">
+                  <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.725-1.36 3.49 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-medium text-yellow-400">Port 5000 already in use</h3>
+                    <div class="mt-2 text-sm text-gray-300">
+                      <p><strong>Solution:</strong> Use a different port with <code class="bg-yellow-500/20 text-yellow-400 px-1 py-0.5 rounded text-xs">flite serve --port 5001</code> or stop the process using port 5000.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border border-blue-500/30 rounded-lg p-6 bg-blue-500/10 backdrop-blur-lg">
+                <div class="flex items-start">
+                  <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-medium text-blue-400">Database connection errors</h3>
+                    <div class="mt-2 text-sm text-gray-300">
+                      <p><strong>Solution:</strong> Check your database configuration in <code class="bg-blue-500/20 text-blue-400 px-1 py-0.5 rounded text-xs">config.py</code> and ensure your database server is running.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
+  </div>
 </div>
 
 <script>
-// Sidebar functionality
-function toggleSection(sectionId) {
-    const content = document.getElementById(sectionId);
-    const toggle = document.getElementById(sectionId + '-toggle');
-    
-    if (content.classList.contains('collapsed')) {
-        content.classList.remove('collapsed');
-        toggle.classList.remove('rotated');
-    } else {
-        content.classList.add('collapsed');
-        toggle.classList.add('rotated');
-    }
-}
-
-// Tab functionality
-function showTab(tabName) {
-    // Hide all tab contents
-    document.querySelectorAll('.tab-content').forEach(content => {
-        content.classList.remove('active');
-    });
-    
-    // Remove active class from all tab buttons
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    // Show selected tab content
-    document.getElementById(tabName).classList.add('active');
-    
-    // Add active class to clicked button
-    event.target.classList.add('active');
-}
-
 // Copy code functionality
 function copyCode(button) {
-    const codeBlock = button.parentElement.nextElementSibling;
-    const code = codeBlock.textContent;
-    
-    navigator.clipboard.writeText(code).then(() => {
-        button.textContent = 'Copied!';
-        setTimeout(() => {
-            button.textContent = 'Copy';
-        }, 2000);
-    });
+  const codeBlock = button.closest('.bg-gray-900').querySelector('code');
+  const textToCopy = codeBlock.innerText;
+  
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    const originalContent = button.innerHTML;
+    button.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+    setTimeout(() => {
+      button.innerHTML = originalContent;
+    }, 2000);
+  }).catch(err => {
+    console.error('Failed to copy text: ', err);
+  });
 }
 
-// Search functionality
-document.getElementById('searchInput').addEventListener('input', function(e) {
-    const searchTerm = e.target.value.toLowerCase();
-    const sections = document.querySelectorAll('.docs-section');
-    
-    sections.forEach(section => {
-        const content = section.textContent.toLowerCase();
-        if (content.includes(searchTerm)) {
-            section.style.display = 'block';
-        } else {
-            section.style.display = 'none';
-        }
-    });
-});
-
-// Sidebar toggle for mobile
-document.getElementById('sidebarToggle').addEventListener('click', function() {
-    const sidebar = document.getElementById('docsSidebar');
-    sidebar.classList.toggle('active');
-});
-
-document.getElementById('sidebarClose').addEventListener('click', function() {
-    const sidebar = document.getElementById('docsSidebar');
-    sidebar.classList.remove('active');
+// Mobile menu toggle
+document.getElementById('mobile-menu-button').addEventListener('click', function() {
+  // Add mobile menu functionality here
+  console.log('Mobile menu clicked');
 });
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Highlight active section in table of contents
-window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('.docs-section');
-    const navLinks = document.querySelectorAll('.page-nav-list a');
-    
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Version link functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const versionLink = document.querySelector('.version-link');
-    if (versionLink) {
-        versionLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Here you would typically redirect to the version page
-            console.log('Version link clicked');
-            // Example: window.location.href = '/docs/versions';
-        });
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
+  });
 });
 </script>
+
+<style>
+@keyframes fire-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+</style>
 {% endblock %}
