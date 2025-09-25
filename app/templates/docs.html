@@ -2,331 +2,480 @@
 
 {% block content %}
 <div class="docs-container">
-    <!-- Navigation -->
-    <nav class="docs-nav">
-        <div class="nav-brand">
-            <a href="{{ url_for('index') }}" class="brand-link">Flite</a>
+    <!-- Main Documentation Layout -->
+    <div class="docs-layout">
+        <!-- Left Sidebar - Full Height -->
+        <aside class="docs-sidebar" id="docsSidebar">
+            <div class="sidebar-header">
+                <a href="{{ url_for('index') }}" class="sidebar-brand">
+                    <span class="brand-icon">🔥</span>
+                    <span class="brand-text">FliteDocs</span>
+                </a>
+                <button class="sidebar-close" id="sidebarClose">✕</button>
+            </div>
+
+            <!-- Search Bar in Sidebar -->
+            <div class="sidebar-search">
+                <div class="search-container">
+                    <button class="search-btn">🔍</button>
+                    <input type="text" class="search-input" placeholder="Search documentation..." id="searchInput">
+                </div>
+            </div>
+
+                    <!-- Version Display in Sidebar -->
+                    <div class="sidebar-version">
+                        <a href="#" class="version-link">
+                            <span class="version-icon">📋</span>
+                            <span class="version-text">v1.0.0</span>
+                        </a>
         </div>
+
+            <nav class="sidebar-nav">
+                <!-- Main Topics Only -->
+                <ul class="main-nav-list">
+                    <li><a href="#getting-started" class="main-nav-item active">Getting Started</a></li>
+                    <li><a href="#guides" class="main-nav-item">Guides</a></li>
+                    <li><a href="#api-reference" class="main-nav-item">API Reference</a></li>
+                    <li><a href="#faq" class="main-nav-item">FAQ</a></li>
+                </ul>
+            </nav>
+
+  
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="docs-main">
+            <!-- Compact Top Navigation -->
+            <nav class="docs-top-nav">
+                <div class="nav-container">
         <div class="nav-links">
             <a href="{{ url_for('index') }}" class="nav-link">Home</a>
             <a href="{{ url_for('docs') }}" class="nav-link active">Docs</a>
         </div>
+                    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+                </div>
+            </nav>
+
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumb">
+                <a href="{{ url_for('index') }}">Home</a>
+                <span class="breadcrumb-separator">›</span>
+                <a href="{{ url_for('docs') }}">Docs</a>
+                <span class="breadcrumb-separator">›</span>
+                <span class="breadcrumb-current">Getting Started</span>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="docs-hero">
-        <div class="hero-content">
-            <h1 class="docs-title">Flite Documentation</h1>
-            <p class="docs-subtitle">Flask Project Generator - Quick Start Guide</p>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <div class="docs-content">
-        <div class="docs-sidebar">
-            <h3>Table of Contents</h3>
-            <ul class="toc">
-                <li><a href="#installation">Installation</a></li>
-                <li><a href="#quick-start">Quick Start</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#commands">Commands</a></li>
-                <li><a href="#examples">Examples</a></li>
-                <li><a href="#configuration">Configuration</a></li>
-                <li><a href="#troubleshooting">Troubleshooting</a></li>
-            </ul>
-        </div>
-
-        <div class="docs-main">
-            <!-- Installation Section -->
-            <section id="installation" class="docs-section">
-                <h2>Installation</h2>
-                <p>Flite is a powerful Flask project generator that helps developers quickly bootstrap Flask applications with modern project structures and best practices.</p>
-                
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="code-title">Install via pip</span>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    </div>
-                    <pre><code>Not available yet on PyPI</code></pre>
+            <!-- Page Header -->
+            <header class="page-header">
+                <h1 class="page-title">FliteDocs Documentation</h1>
+                <p class="page-subtitle">Complete guide to building Flask applications with Flite - A Python CLI project generator</p>
+                <div class="page-meta">
+                    <span class="version-badge">v2.0</span>
+                    <span class="last-updated">Last updated: January 2025</span>
                 </div>
+            </header>
 
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="code-title">Or install from source</span>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <!-- Content Sections -->
+            <div class="content-sections">
+                <!-- Getting Started Section -->
+                <section class="docs-section" id="installation">
+                    <div class="section-header">
+                        <h2>🚀 Installation</h2>
+                        <div class="section-meta">
+                            <span class="difficulty">Beginner</span>
+                            <span class="time-estimate">3 min read</span>
+                        </div>
                     </div>
-                    <pre><code>git clone https://github.com/Artbyo3/flite.git
+                    <div class="section-content">
+                        <p>Flite is a Python CLI tool for generating Flask projects. Since it's currently in development, you'll need to install it from source.</p>
+                        
+                        <div class="installation-methods">
+                            <div class="method-tabs">
+                                <button class="tab-btn active" onclick="showTab('source')">From Source</button>
+                                <button class="tab-btn" onclick="showTab('pip')">Pip (Coming Soon)</button>
+                            </div>
+
+                            <div class="tab-content active" id="source">
+                                <h3>Install from Source</h3>
+                                <p>Clone the repository and install Flite in development mode:</p>
+                                
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-title">Terminal</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code class="language-bash"># Clone the repository
+git clone https://github.com/Artbyo3/flite.git
 cd flite
+
+# Install in development mode
 pip install -e .</code></pre>
-                </div>
-            </section>
+                                </div>
 
-            <!-- Quick Start Section -->
-            <section id="quick-start" class="docs-section">
-                <h2>Quick Start</h2>
-                <p>Get up and running with Flite in just a few commands:</p>
-                
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="code-title">Create a new Flask project</span>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    </div>
-                    <pre><code>flite create my-awesome-app
-cd my-awesome-app
-flite run</code></pre>
-                </div>
+                                <div class="method-note">
+                                    <strong>Note:</strong> Make sure you have Python 3.8+ installed and pip available.
+                                </div>
 
-                <div class="info-box">
-                    <h4>🎉 That's it!</h4>
-                    <p>Your Flask application is now running at <code>http://localhost:5000</code> with a modern project structure, beautiful UI, and all the essentials you need to start building.</p>
-                </div>
-            </section>
+                                <h4>Verify Installation</h4>
+                                <p>Check if Flite is installed correctly:</p>
+                                <div class="code-block small">
+                                    <div class="code-header">
+                                        <span class="code-title">Terminal</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code class="language-bash">flite --version</code></pre>
+                                </div>
+                            </div>
 
-            <!-- Features Section -->
-            <section id="features" class="docs-section">
-                <h2>Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3>Lightning Fast</h3>
-                        <p>Generate a complete Flask project structure in seconds</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🎨</div>
-                        <h3>Modern UI</h3>
-                        <p>Beautiful, responsive design with 3D effects and animations</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📁</div>
-                        <h3>Best Practices</h3>
-                        <p>Follows Flask best practices and project organization</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔧</div>
-                        <h3>Configurable</h3>
-                        <p>Customize templates, styles, and project structure</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📦</div>
-                        <h3>Dependencies</h3>
-                        <p>Automatic dependency management with requirements.txt</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🚀</div>
-                        <h3>Production Ready</h3>
-                        <p>Includes configuration for development and production</p>
-                    </div>
-                </div>
-            </section>
+                            <div class="tab-content" id="pip">
+                                <h3>Install with Pip (Coming Soon)</h3>
+                                <div class="coming-soon-box">
+                                    <span class="coming-soon-icon">🚀</span>
+                                    <div class="coming-soon-content">
+                                        <h4>Pip Installation Coming Soon!</h4>
+                                        <p>We're working on making Flite available through pip. For now, please use the source installation method above.</p>
+                                    </div>
+                                </div>
+                                
+                                <p>Once available, you'll be able to install Flite with:</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-title">Terminal</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code class="language-bash">pip install flite</code></pre>
+                                </div>
+                            </div>
+                        </div>
 
-            <!-- Commands Section -->
-            <section id="commands" class="docs-section">
-                <h2>Commands</h2>
-                <p>Flite provides several commands to help you manage your Flask projects:</p>
-                
-                <div class="command-list">
-                    <div class="command-item">
-                        <h4><code>flite create &lt;project-name&gt;</code></h4>
-                        <p>Creates a new Flask project with the specified name</p>
-                        <div class="code-block small">
-                            <pre><code>flite create my-blog
-flite create ecommerce-site
-flite create api-backend</code></pre>
+                        <div class="prerequisites-box">
+                            <h4>Prerequisites</h4>
+                            <ul>
+                                <li><strong>Python 3.8+</strong> - Flite requires Python 3.8 or higher</li>
+                                <li><strong>Git</strong> - For cloning the repository</li>
+                                <li><strong>pip</strong> - Python package installer</li>
+                                <li><strong>Virtual Environment</strong> (recommended) - For isolated installations</li>
+                            </ul>
                         </div>
                     </div>
+                </section>
 
-                    <div class="command-item">
-                        <h4><code>flite init</code></h4>
-                        <p>Initialize Flite in an existing directory</p>
-                        <div class="code-block small">
-                            <pre><code>mkdir my-project
-cd my-project
-flite init</code></pre>
+                <section class="docs-section" id="quickstart">
+                    <div class="section-header">
+                        <h2>⚡ Quickstart</h2>
+                        <div class="section-meta">
+                            <span class="difficulty">Beginner</span>
+                            <span class="time-estimate">10 min read</span>
                         </div>
                     </div>
+                    <div class="section-content">
+                        <p>Create your first Flask project in under 2 minutes.</p>
+                        
+                        <div class="steps-container">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3>Initialize Project</h3>
+                                    <p>Create a new Flask project with Flite's default template.</p>
+                                    <div class="code-block small">
+                                        <pre><code>flite init my-project</code></pre>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <div class="command-item">
-                        <h4><code>flite add &lt;component&gt;</code></h4>
-                        <p>Add components to existing projects</p>
-                        <div class="code-block small">
-                            <pre><code>flite add auth      # Add authentication
-flite add api        # Add API endpoints
-flite add admin      # Add admin panel
-flite add database   # Add database models</code></pre>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3>Navigate to Project</h3>
+                                    <p>Move into your project directory and explore the structure.</p>
+                                    <div class="code-block small">
+                                        <pre><code>cd my-project</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3>Run Development Server</h3>
+                                    <p>Start the development server and see your app in action.</p>
+                                    <div class="code-block small">
+                                        <pre><code>flite run</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="success-box">
+                            <div class="success-icon">✅</div>
+                            <div class="success-content">
+                                <h3>Success!</h3>
+                                <p>Your Flask application is now running at <code>http://localhost:5000</code>. Open your browser and start building!</p>
+                            </div>
                         </div>
                     </div>
+                </section>
 
-                    <div class="command-item">
-                        <h4><code>flite serve</code></h4>
-                        <p>Start the development server with auto-reload</p>
-                        <div class="code-block small">
-                            <pre><code>flite serve --port 8080
-flite serve --debug
-flite serve --host 0.0.0.0</code></pre>
+                <section class="docs-section" id="project-structure">
+                    <div class="section-header">
+                        <h2>📁 Project Structure</h2>
+                        <div class="section-meta">
+                            <span class="difficulty">Intermediate</span>
+                            <span class="time-estimate">8 min read</span>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Examples Section -->
-            <section id="examples" class="docs-section">
-                <h2>Examples</h2>
-                <p>Here are some common use cases and examples:</p>
-
-                <div class="example-section">
-                    <h3>Creating a Blog</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-title">Complete blog setup</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><code># Create the project
-flite create my-blog
-
-# Add blog features
-cd my-blog
-flite add auth
-flite add database
-
-# Start developing
-flask run</code></pre>
-                    </div>
-                </div>
-
-                <div class="example-section">
-                    <h3>Building an API</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-title">REST API setup</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><code># Create API project
-flite create my-api --template api
-
-# Add database and authentication
-flite add database
-flite add auth
-
-# Add API documentation
-flite add docs
-
-# Run the API
-flask run --port 5000</code></pre>
-                    </div>
-                </div>
-
-                <div class="example-section">
-                    <h3>E-commerce Site</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-title">E-commerce setup</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><code># Create e-commerce project
-flite create shop --template ecommerce
-
-# Add all necessary components
-flite add auth
-flite add database
-flite add payment
-flite add admin
-
-# Start the application
-flask run</code></pre>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Configuration Section -->
-            <section id="configuration" class="docs-section">
-                <h2>Configuration</h2>
-                <p>Flite projects come with sensible defaults, but you can customize them:</p>
-
-                <div class="config-section">
-                    <h3>Project Structure</h3>
-                    <div class="code-block">
-                        <pre><code>my-project/
+                    <div class="section-content">
+                        <p>Understanding the default project structure created by Flite.</p>
+                        
+                        <div class="structure-diagram">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-title">Default Project Structure</span>
+                                </div>
+                                <pre><code>my-project/
 ├── app/
 │   ├── __init__.py
-│   ├── routes.py
-│   ├── models.py
-│   ├── static/
-│   │   ├── css/
-│   │   ├── js/
-│   │   └── images/
-│   └── templates/
-│       ├── base.html
-│       └── index.html
-├── config.py
+│   ├── models/
+│   ├── views/
+│   ├── templates/
+│   └── static/
+├── tests/
 ├── requirements.txt
-└── run.py</code></pre>
-                    </div>
-                </div>
+├── config.py
+├── run.py
+└── README.md</code></pre>
+                            </div>
+                        </div>
 
-                <div class="config-section">
-                    <h3>Environment Variables</h3>
-                    <div class="code-block">
-                        <pre><code># .env file
-FLASK_APP=run.py
-FLASK_ENV=development
-SECRET_KEY=your-secret-key-here
-DATABASE_URL=sqlite:///app.db</code></pre>
+                        <div class="structure-explanation">
+                            <h3>📋 Structure Overview</h3>
+                            <div class="explanation-grid">
+                                <div class="explanation-item">
+                                    <h3>app/</h3>
+                                    <p>Main application package containing all your Flask code</p>
+                                </div>
+                                <div class="explanation-item">
+                                    <h3>models/</h3>
+                                    <p>Database models and data structures</p>
+                                </div>
+                                <div class="explanation-item">
+                                    <h3>views/</h3>
+                                    <p>Route handlers and business logic</p>
+                                </div>
+                                <div class="explanation-item">
+                                    <h3>templates/</h3>
+                                    <p>Jinja2 HTML templates</p>
+                                </div>
+                                <div class="explanation-item">
+                                    <h3>static/</h3>
+                                    <p>CSS, JavaScript, and image assets</p>
+                                </div>
+                                <div class="explanation-item">
+                                    <h3>tests/</h3>
+                                    <p>Unit and integration tests</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Troubleshooting Section -->
-            <section id="troubleshooting" class="docs-section">
-                <h2>Troubleshooting</h2>
+                <section class="docs-section" id="cli-commands">
+                    <div class="section-header">
+                        <h2>⚡ CLI Commands</h2>
+                        <div class="section-meta">
+                            <span class="difficulty">Intermediate</span>
+                            <span class="time-estimate">15 min read</span>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <p>Complete reference of all available Flite CLI commands.</p>
+                        
+                        <div class="commands-grid">
+                            <div class="command-card">
+                                <div class="command-header">
+                                    <h3>init</h3>
+                                    <span class="command-badge">Core</span>
+                                </div>
+                                <div class="command-description">
+                                    <p>Initialize a new Flask project with the specified template.</p>
+                                </div>
+                                <div class="command-usage">
+                                    <div class="code-block small">
+                                        <pre><code>flite init &lt;project-name&gt; [options]</code></pre>
+                                    </div>
+                                </div>
+                                <div class="command-options">
+                                    <h4>Options:</h4>
+                                    <ul>
+                                        <li><code>--template</code> Specify template to use</li>
+                                        <li><code>--database</code> Database type (sqlite, postgresql, mysql)</li>
+                                        <li><code>--auth</code> Include authentication system</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="command-card">
+                                <div class="command-header">
+                                    <h3>run</h3>
+                                    <span class="command-badge">Development</span>
+                                </div>
+                                <div class="command-description">
+                                    <p>Start the Flask development server with hot reload.</p>
+                                </div>
+                                <div class="command-usage">
+                                    <div class="code-block small">
+                                        <pre><code>flite run [options]</code></pre>
+                                    </div>
+                                </div>
+                                <div class="command-options">
+                                    <h4>Options:</h4>
+                                    <ul>
+                                        <li><code>--host</code> Host to bind to (default: 127.0.0.1)</li>
+                                        <li><code>--port</code> Port to bind to (default: 5000)</li>
+                                        <li><code>--debug</code> Enable debug mode</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="command-card">
+                                <div class="command-header">
+                                    <h3>build</h3>
+                                    <span class="command-badge">Production</span>
+                                </div>
+                                <div class="command-description">
+                                    <p>Build the application for production deployment.</p>
+                                </div>
+                                <div class="command-usage">
+                                    <div class="code-block small">
+                                        <pre><code>flite build [options]</code></pre>
+                                    </div>
+                                </div>
+                                <div class="command-options">
+                                    <h4>Options:</h4>
+                                    <ul>
+                                        <li><code>--optimize</code> Optimize assets and code</li>
+                                        <li><code>--minify</code> Minify CSS and JavaScript</li>
+                                        <li><code>--output</code> Output directory</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="docs-section" id="common-issues">
+                    <div class="section-header">
+                        <h2>❓ Common Issues</h2>
+                        <div class="section-meta">
+                            <span class="difficulty">All Levels</span>
+                            <span class="time-estimate">12 min read</span>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <p>Solutions to frequently encountered problems.</p>
+                        
+                        <div class="issues-list">
+                            <div class="issue-item">
+                                <div class="issue-header">
+                                    <h3>ModuleNotFoundError: No module named 'flite'</h3>
+                                    <span class="issue-severity high">High</span>
+                                </div>
+                                <div class="issue-description">
+                                    <p><strong>Problem:</strong> Flite is not installed or not in your Python path.</p>
+                                    <p><strong>Solution:</strong> Reinstall Flite using pip or check your Python environment.</p>
+                                </div>
+                                <div class="issue-solution">
+                                    <div class="code-block small">
+                                        <pre><code>pip install --upgrade flite</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="issue-item">
+                                <div class="issue-header">
+                                    <h3>Port 5000 already in use</h3>
+                                    <span class="issue-severity medium">Medium</span>
+                                </div>
+                                <div class="issue-description">
+                                    <p><strong>Problem:</strong> Another process is using port 5000.</p>
+                                    <p><strong>Solution:</strong> Use a different port or stop the conflicting process.</p>
+                                </div>
+                                <div class="issue-solution">
+                                    <div class="code-block small">
+                                        <pre><code>flite run --port 8000</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+        </main>
+
+        <!-- Right Sidebar - Table of Contents -->
+        <aside class="page-nav">
+            <div class="page-nav-header">
+                <h4>On This Page</h4>
+            </div>
+            <div class="page-nav-content">
+                <div class="current-section">
+                    <h5 class="section-title">Getting Started</h5>
+                </div>
                 
-                <div class="troubleshoot-item">
-                    <h3>❌ ModuleNotFoundError: No module named 'flask'</h3>
-                    <p><strong>Solution:</strong> Make sure you have Flask installed in your virtual environment:</p>
-                    <div class="code-block small">
-                        <pre><code>pip install flask
-# or
-pip install -r requirements.txt</code></pre>
-                    </div>
+                <div class="section-topics">
+                    <ul class="topic-list">
+                        <li><a href="#installation" class="topic-link">Installation</a></li>
+                        <li><a href="#quickstart" class="topic-link">Quickstart</a></li>
+                        <li><a href="#first-project" class="topic-link">Your First Project</a></li>
+                        <li><a href="#configuration" class="topic-link">Configuration</a></li>
+                    </ul>
                 </div>
-
-                <div class="troubleshoot-item">
-                    <h3>❌ Port already in use</h3>
-                    <p><strong>Solution:</strong> Use a different port or kill the process using the port:</p>
-                    <div class="code-block small">
-                        <pre><code>flask run --port 8080
-# or
-lsof -ti:5000 | xargs kill -9</code></pre>
-                    </div>
-                </div>
-
-                <div class="troubleshoot-item">
-                    <h3>❌ Template not found</h3>
-                    <p><strong>Solution:</strong> Make sure your templates are in the correct directory and Flask can find them:</p>
-                    <div class="code-block small">
-                        <pre><code># Check your app structure
-ls -la app/templates/
-# Make sure Flask app is initialized correctly
-python -c "from app import app; print(app.template_folder)"</code></pre>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Footer -->
-            <footer class="docs-footer">
-                <div class="footer-content">
-                    <p>Need help? Check out our <a href="https://github.com/yourusername/flite" target="_blank">GitHub repository</a>.</p>
-                    <p class="footer-note">Made with ❤️ by the Flite team</p>
-                </div>
-            </footer>
-        </div>
+            </div>
+        </aside>
     </div>
 </div>
 
 <script>
+// Sidebar functionality
+function toggleSection(sectionId) {
+    const content = document.getElementById(sectionId);
+    const toggle = document.getElementById(sectionId + '-toggle');
+    
+    if (content.classList.contains('collapsed')) {
+        content.classList.remove('collapsed');
+        toggle.classList.remove('rotated');
+    } else {
+        content.classList.add('collapsed');
+        toggle.classList.add('rotated');
+    }
+}
+
+// Tab functionality
+function showTab(tabName) {
+    // Hide all tab contents
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // Remove active class from all tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Show selected tab content
+    document.getElementById(tabName).classList.add('active');
+    
+    // Add active class to clicked button
+    event.target.classList.add('active');
+}
+
 // Copy code functionality
 function copyCode(button) {
     const codeBlock = button.parentElement.nextElementSibling;
     const code = codeBlock.textContent;
+    
     navigator.clipboard.writeText(code).then(() => {
         button.textContent = 'Copied!';
         setTimeout(() => {
@@ -334,6 +483,32 @@ function copyCode(button) {
         }, 2000);
     });
 }
+
+// Search functionality
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const sections = document.querySelectorAll('.docs-section');
+    
+    sections.forEach(section => {
+        const content = section.textContent.toLowerCase();
+        if (content.includes(searchTerm)) {
+            section.style.display = 'block';
+        } else {
+            section.style.display = 'none';
+        }
+    });
+});
+
+// Sidebar toggle for mobile
+document.getElementById('sidebarToggle').addEventListener('click', function() {
+    const sidebar = document.getElementById('docsSidebar');
+    sidebar.classList.toggle('active');
+});
+
+document.getElementById('sidebarClose').addEventListener('click', function() {
+    const sidebar = document.getElementById('docsSidebar');
+    sidebar.classList.remove('active');
+});
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -349,26 +524,39 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Highlight active section in navigation
-window.addEventListener('scroll', () => {
+// Highlight active section in table of contents
+window.addEventListener('scroll', function() {
     const sections = document.querySelectorAll('.docs-section');
-    const navLinks = document.querySelectorAll('.toc a');
+    const navLinks = document.querySelectorAll('.page-nav-list a');
     
     let current = '';
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
+        if (window.pageYOffset >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
     });
-
+    
     navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === '#' + current) {
             link.classList.add('active');
         }
     });
+});
+
+// Version link functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const versionLink = document.querySelector('.version-link');
+    if (versionLink) {
+        versionLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Here you would typically redirect to the version page
+            console.log('Version link clicked');
+            // Example: window.location.href = '/docs/versions';
+        });
+    }
 });
 </script>
 {% endblock %}
